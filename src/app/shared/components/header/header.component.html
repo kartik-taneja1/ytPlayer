@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="onMenuClick()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="d-flex align-items-center mr-1">
+    Play <mat-icon>music_note</mat-icon> With Friends
+  </span>
+  <span class="spacer"></span>
+  <button *ngIf="!isInRoom" mat-stroked-button class="me-2" (click)="joinRoom()">
+    Join <mat-icon>group_add</mat-icon>
+  </button>
+  <button *ngIf="!isInRoom" mat-raised-button (click)="createRoom()">
+    Create <mat-icon>add_circle</mat-icon>
+  </button>
+  <button *ngIf="isInRoom" mat-raised-button (click)="leaveRoom()">
+    Leave <mat-icon>logout</mat-icon>
+  </button>
+
+</mat-toolbar>

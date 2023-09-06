@@ -1,0 +1,174 @@
+.player {
+  font-size: 16px;
+  position: fixed;
+  z-index: 998;
+  bottom: 0;
+  left: 0;
+  background-color: gainsboro;
+  width: 100%;
+  height: 100%;
+  padding: 3vh min(60px, 8vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  transition: all 0.4s;
+}
+.player-toggler {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnail {
+  z-index: 5;
+  position: relative;
+}
+.thumbnail img {
+  width: min(40vh, 84vw);
+  height: min(40vh, 84vw);
+  border-radius: 1.5em;
+  object-fit: cover;
+}
+
+.player .hide-arrow {
+  width: 100%;
+  height: 0;
+  z-index: 7;
+}
+.player .hide-arrow .mat-icon {
+  border-radius: 50%;
+  background-color: #fffa;
+  box-shadow: 0 0 1px 1px #0003;
+  transform: scale(2) translateY(50%);
+}
+.info {
+  margin: 1em 0;
+  overflow: hidden;
+}
+.info .title {
+  font-size: 1.4em;
+  width: fit-content;
+  padding-bottom: 0.5em;
+  white-space: nowrap;
+}
+.info .title.animateText {
+  animation: textAnim 15s linear infinite;
+}
+@keyframes textAnim {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  48% {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+  49% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  51% {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.info .yt-channel {
+  padding-bottom: 0.5em;
+  color: #000a;
+}
+
+.progress {
+  width: 100%;
+}
+.progress input {
+  cursor: pointer;
+  background: linear-gradient(to right, #eee 0%, #eee 0%, #777 0%, #777 100%);
+  border-radius: 8px;
+  height: 0.25em;
+  outline: none;
+  -webkit-appearance: none;
+  width: 100%;
+}
+.progress input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  background: #333;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+}
+
+.like-and-playlist .mat-icon {
+  margin-right: 0.4em;
+}
+
+.controls .mat-icon {
+  transform: scale(1.8);
+}
+
+/* when player closed */
+.player.closed {
+  height: 70px;
+  padding: 5px;
+  justify-content: space-between;
+}
+.player.closed .thumbnail {
+  position: absolute;
+  width: calc(100% - 10px);
+}
+.player.closed .thumbnail img {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.player.closed .info {
+  order: 3;
+  margin: 0;
+}
+.player.closed .info .title {
+  font-size: 1em;
+  padding: 0;
+}
+.player.closed .controls {
+  order: 1;
+  justify-content: center;
+}
+.player.closed .controls .mat-icon {
+  transform: scale(1);
+  margin: 0 3vw;
+}
+.player.closed .controls .play-pause {
+  z-index: 11;
+  margin: 0 6vw;
+  transform: translateY(-50%) scale(2.5);
+  position: relative;
+}
+.player.closed .controls .play-pause .img-overlay {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #fff4;
+}
+.player.closed .progress {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 10px);
+  transform: translateY(calc(-0.125em - 50%));
+}
+.player.closed .timer {
+  position: absolute;
+  width: calc(100% - 10px);
+}
+.player.closed .progress input[type="range"]::-webkit-slider-thumb {
+  width: 0.6em;
+  height: 0.6em;
+}

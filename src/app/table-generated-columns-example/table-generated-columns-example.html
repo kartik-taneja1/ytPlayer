@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" multiTemplateDataRows>
+
+  <ng-container *ngFor="let column of columns; let i=index" [matColumnDef]="column.columnDef">
+    <th mat-header-cell *matHeaderCellDef>
+      {{column.header}}
+    </th>
+    <td mat-cell *matCellDef="let row">
+      {{row[column.columnDef]}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element; let i= dataIndex">
+      <button *ngIf="element.subUsers?.length" mat-icon-button aria-label="expand row"
+        (click)="expand(element, i); $event.stopPropagation();">
+        <mat-icon>{{expandedRows[i]?'keyboard_arrow_up':'keyboard_arrow_down'}}</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="subtask">
+    <td mat-cell *matCellDef="let element; let i= dataIndex" [attr.colspan]="displayedColumns.length">
+      <mat-table [dataSource]="element.subUsers" [@detailExpand]="expandedRows[i] ? 'expanded' : 'collapsed'">
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+          <mat-cell *matCellDef="let row">
+            {{row[column.columnDef]}}
+          </mat-cell>
+        </ng-container>
+        <mat-row *matRowDef="let row; columns: subDisplayedColumns;"></mat-row>
+      </mat-table>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns; let i= dataIndex" (click)="expand(row,i)"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['subtask'];" class="sub-task-row"></tr>
+</table>

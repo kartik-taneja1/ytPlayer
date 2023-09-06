@@ -1,0 +1,40 @@
+<!-- <div class="outer">You are joined to room: {{roomDetail.name +'('+roomDetail.roomId +')'}}</div>
+<div class="second">Joined users : {{ roomDetail.userCount }}</div>
+<div class="users">
+    <div class="user" *ngFor="let user of users">{{user.username}}</div>
+</div> -->
+
+<div class="p-2 d-flex justify-content-between">
+    <mat-card class="glass-card p-2">
+        <mat-card-content>
+            <p>You are joined to room</p>
+            <h3 class="glass-card-title">{{roomDetail.name}}</h3>
+            <p>{{roomDetail.roomId}}</p>
+        </mat-card-content>
+    </mat-card>
+    <br>
+    <mat-card class="glass-card p-2">
+        <mat-card-content>
+            <p>User Count</p>
+            <h3 class="glass-card-title">{{roomDetail.userCount}}</h3>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<mat-grid-list *ngIf="roomDetail?.userCount" [cols]="breakpoint" rowHeight="200px"
+    (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let user of users; let i=index">
+        <mat-card class="w-100 mx-2 glass-card" >
+            <mat-card-header>
+                <mat-card-title class="font-weight-bold">{{user.username}}</mat-card-title>
+            </mat-card-header>
+            <!-- <mat-card-content style="opacity: 0.75;">
+                <div class="roomId">{{room.roomId}}</div>
+                <div class="d-flex justify-content-between">
+                    <div class="users">Users: {{room.userCount}}</div>
+                    <button mat-raised-button (click)="joinRoom(room.roomId)">Join</button>
+                </div>
+            </mat-card-content> -->
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

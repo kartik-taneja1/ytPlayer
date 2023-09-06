@@ -1,0 +1,93 @@
+<div
+  *ngIf="src"
+  class="player"
+  [class.closed]="!isPlayerOpen"
+>
+  <div
+    *ngIf="!isPlayerOpen"
+    class="player-toggler"
+    (click)="isPlayerOpen=!isPlayerOpen"
+  ></div>
+  <div *ngIf="isPlayerOpen" class="hide-arrow d-flex jce aic">
+    <mat-icon *ngIf="isPlayerOpen" (click)="isPlayerOpen=!isPlayerOpen"
+      >keyboard_arrow_down</mat-icon
+    >
+  </div>
+  <div [class.stretch]="isPlayerOpen" class="thumbnail d-flex jcc aic no-ev">
+    <img [src]="songData.image" />
+  </div>
+
+  <div [class.stretch]="isPlayerOpen" class="info no-ev" #info>
+    <div
+      #title
+      class="title"
+      [class.animateText]="checkIfLongTitle(info, title)"
+    >
+      {{ songData.title }}
+    </div>
+    <div *ngIf="isPlayerOpen" class="yt-channel">{{ ' youtube channel ' }}</div>
+    <div *ngIf="isPlayerOpen" class="yt-data d-flex jcsb aic">
+      <div class="views">{{ songData.views | numToKMB }} views</div>
+      <div class="ago">{{ songData.ago }}</div>
+    </div>
+  </div>
+
+  <div class="progress">
+    <input
+      #progressEl
+      type="range"
+      [value]="progressBar"
+      [style.background]="
+        'linear-gradient(to right, #000 0%, #000 ' +
+        this.progressBar +
+        '%, #82CFD0 ' +
+        this.progressBar +
+        '%, #82CFD0 100%)'
+      "
+      min="0"
+      max="100"
+      step="1"
+      (input)="seekTo($event)"
+    />
+  </div>
+  <div class="timer d-flex jcsb aic no-ev">
+    <div class="current-time">{{ currentTimeStamp | secToHMS }}</div>
+    <div class="total-time">{{ songData.seconds | secToHMS }}</div>
+  </div>
+
+  <div
+    [class.stretch]="isPlayerOpen"
+    *ngIf="isPlayerOpen"
+    class="like-and-playlist d-flex jcsb aic"
+  >
+    <div class="add-to-playlist d-flex aic">
+      <mat-icon>playlist_add</mat-icon> Add to Playlist
+    </div>
+    <div class="like d-flex aic"><mat-icon>thumb_up</mat-icon>Like</div>
+  </div>
+
+  <div [class.stretch]="isPlayerOpen" class="controls d-flex jcsa aic">
+    <mat-icon>skip_previous</mat-icon>
+    <mat-icon (click)="seekFixed()">fast_rewind</mat-icon>
+    <div class="play-pause center">
+      <div class="img-overlay"></div>
+      <mat-icon *ngIf="song.paused" (click)="play()">play_arrow</mat-icon>
+      <mat-icon *ngIf="!song.paused" (click)="pause()">pause</mat-icon>
+      <mat-icon *ngIf="song.paused" (click)="play()"
+        >play_circle_outline</mat-icon
+      >
+      <mat-icon *ngIf="!song.paused" (click)="pause()"
+        >pause_circle_outline</mat-icon
+      >
+    </div>
+    <mat-icon (click)="seekFixed(true)">fast_forward</mat-icon>
+    <mat-icon>skip_next</mat-icon>
+  </div>
+
+</div>
+<audio
+  controls
+  [src]="src | sanitize"
+  #songEl
+>
+</audio>

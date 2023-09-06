@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Play Music</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* loader styles only*/
+    body {
+      min-height: 100%;
+    }
+
+    #loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      background-color: #000b;
+      position: fixed;
+      z-index: 999999;
+    }
+
+    #load {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+    }
+
+    #load .blocks {
+      position: absolute;
+      left: 70px;
+      width: 30px;
+      height: 4px;
+      background: linear-gradient(90deg, white 50%, transparent 50%);
+      animation: load 0.6s linear infinite;
+      transform-origin: top right;
+    }
+
+    #load .blocks::after {
+      content: "";
+      position: absolute;
+      left: -2px;
+      width: 0;
+      height: 0;
+      border-top: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+      border-right: 2px solid white;
+    }
+
+    #load .b2 {
+      animation-delay: 0.05s;
+      transform: rotate(30deg);
+    }
+
+    #load .b3 {
+      animation-delay: 0.1s;
+      transform: rotate(60deg);
+    }
+
+    #load .b4 {
+      animation-delay: 0.15s;
+      transform: rotate(90deg);
+    }
+
+    #load .b5 {
+      animation-delay: 0.2s;
+      transform: rotate(120deg);
+    }
+
+    #load .b6 {
+      animation-delay: 0.25s;
+      transform: rotate(150deg);
+    }
+
+    #load .b7 {
+      animation-delay: 0.3s;
+      transform: rotate(180deg);
+    }
+
+    #load .b8 {
+      animation-delay: 0.35s;
+      transform: rotate(210deg);
+    }
+
+    #load .b9 {
+      animation-delay: 0.4s;
+      transform: rotate(240deg);
+    }
+
+    #load .b10 {
+      animation-delay: 0.45s;
+      transform: rotate(270deg);
+    }
+
+    #load .b11 {
+      animation-delay: 0.5s;
+      transform: rotate(300deg);
+    }
+
+    #load .b12 {
+      animation-delay: 0.55s;
+      transform: rotate(330deg);
+    }
+
+    @keyframes load {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body class="mat-typography">
+  <div id="loader">
+    <div id="load">
+      <div class="blocks b1"></div>
+      <div class="blocks b2"></div>
+      <div class="blocks b3"></div>
+      <div class="blocks b4"></div>
+      <div class="blocks b5"></div>
+      <div class="blocks b6"></div>
+      <div class="blocks b7"></div>
+      <div class="blocks b8"></div>
+      <div class="blocks b9"></div>
+      <div class="blocks b10"></div>
+      <div class="blocks b11"></div>
+      <div class="blocks b12"></div>
+    </div>
+  </div>
+  <app-root></app-root>
+</body>
+</html>

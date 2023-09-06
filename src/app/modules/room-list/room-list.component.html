@@ -1,0 +1,23 @@
+<div class="rooms mx-3">
+    <div class="d-flex">
+        <h2 class="mx-3">Total Live Users: {{liveUserCount}} </h2>
+    </div>
+    <mat-grid-list *ngIf="roomList&&roomList.length>0" [cols]="breakpoint" rowHeight="200px"
+        (window:resize)="onResize($event)">
+        <mat-grid-tile *ngFor="let room of roomList; let i=index">
+            <mat-card class="w-100 mx-2" [style.background]="room.bgColor" [style.color]="room.color">
+                <mat-card-header>
+                    <mat-card-title class="font-weight-bold">{{room.name}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content style="opacity: 0.75;">
+                    <div class="roomId">{{room.roomId}}</div>
+                    <div class="d-flex justify-content-between">
+                        <div class="users">Users: {{room.userCount}}</div>
+                        <button mat-raised-button (click)="joinRoom(room.roomId)">Join</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <h2 *ngIf="!roomList || roomList.length==0">No Rooms Found, create a new one.</h2>
+</div>

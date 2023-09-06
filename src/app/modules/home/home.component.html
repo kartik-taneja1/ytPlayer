@@ -1,0 +1,14 @@
+<div class="home d-flex flex-column h-100">
+    <div class="search">
+        <form (ngSubmit)="search()" class="center mx-5 my-2">
+            <input type="text" class="flex-grow-1 flex-shrink-1" placeholder="Search anything..." [(ngModel)]="searchText"
+                [ngModelOptions]="{standalone: true}" />
+            <div class="search-btn center search-btn">
+                <mat-icon (click)="search()">search</mat-icon>
+            </div>
+        </form>
+    </div>
+    <div class="song-list">
+        <app-song *ngFor="let song of songList" [song]="song" class="song"></app-song>
+    </div>
+</div>

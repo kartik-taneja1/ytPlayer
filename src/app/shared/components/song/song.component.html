@@ -1,0 +1,23 @@
+<div class="song-container" (click)="addToQueue()">
+    <img class="song-img" [src]="song.image" [alt]="song.title" />
+    <div class="song-data">
+        <div class="song-name">
+            {{ song.title }}
+        </div>
+        <div class="stat">
+            <div class="timestamp center">
+                {{ song.seconds | secToHMS }}
+            </div>
+            <div class="views center">
+                <mat-icon> bar_chart</mat-icon>
+                {{ song.views | numToKMB }}
+            </div>
+            <div class="ago center">
+                <mat-icon>access_time</mat-icon> {{ song.ago }}
+            </div>
+        </div>
+    </div>
+</div>
+<mat-progress-bar [mode]="isLoading && loadedPerc===0 ? 'indeterminate':'determinate'"
+    [ngClass]="isLoading && loadedPerc==0 ? 'custom-progress':''" [color]="isLoadingStarted && !isLoading? 'accent':''"
+    [value]="loadedPerc"></mat-progress-bar>

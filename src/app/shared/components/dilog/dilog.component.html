@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+  <form>
+    <h1>{{data.title}}</h1>
+    <p>{{data.subTitle}}</p>
+    <mat-form-field appearance="fill">
+      <mat-label>{{data.label}}</mat-label>
+      <input name="input" matInput [(ngModel)]="data.value" cdkFocusInitial>
+    </mat-form-field>
+    <br>
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="data.value">Ok</button>
+  </form>
+</div>

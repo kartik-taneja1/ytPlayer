@@ -1,0 +1,14 @@
+<div class="main-container">
+    <div class="chat-header">Room Name</div>
+    <div class="chats">
+        <div class="message" *ngFor="let msg of messages">
+            {{msg.sender.username}} :
+            {{msg.content}}
+            {{msg.timestamp}}
+        </div>
+    </div>
+    <form class="input" (ngSubmit)="sendMessage()">
+        <input type="text" [(ngModel)]="msgText" [ngModelOptions]="{standalone: true}" >
+        <button type="submit">send</button>
+    </form>
+</div>

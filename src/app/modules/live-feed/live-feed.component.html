@@ -1,0 +1,37 @@
+<div class="live-feed-container w-100 h-100">
+    <mat-tab-group class="h-100">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>info</mat-icon>
+                <div class="d-inline pl-3">
+                    Details
+                </div>
+            </ng-template>
+            <app-room-details></app-room-details>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>view_list</mat-icon>
+                <div class="d-inline pl-3">
+                    Queue
+                </div>
+            </ng-template>
+            <app-queue></app-queue>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>chat_bubble_outline</mat-icon>
+                <div class="d-inline pl-3">
+                    Chat
+                </div>
+            </ng-template>
+            <app-chat></app-chat>
+        </mat-tab>
+    </mat-tab-group>
+    <div *ngFor="let img of icons"
+        [ngStyle]="{'top': img.top +'%', 'left': img.left+'%', 'animation-delay': '-'+img.delay+'s'}" class="music-img">
+        <img [src]="'assets/music-svgs/'+img.n+'.svg'" alt="" srcset="">
+    </div>
+</div>
